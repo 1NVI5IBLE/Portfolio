@@ -31,19 +31,19 @@ function App() {
         </div>
 
         <div className = "mt-20 w-full max-w-2xl grid grid-cols-2 gap-3">
-          <button className = "bg-white border border-gray-200  rounded-xl p-4 text-center">
+          <button className = "bg-white border border-gray-200  rounded-xl p-4 text-center hover:bg-gray-50 hover:-translate-y-1 transition duration-200">
             About Me
           </button>
 
-          <button className = "bg-white border border-gray-200 rounded-xl p-4 text-center">
+          <button className = "bg-white border border-gray-200 rounded-xl p-4 text-center hover:bg-gray-50 hover:-translate-y-1 transition duration-200">
             Experience
           </button>
 
-          <button className = "bg-white border border-gray-200 rounded-xl p-4 text-center">
+          <button className = "bg-white border border-gray-200 rounded-xl p-4 text-center hover:bg-gray-50 hover:-translate-y-1 transition duration-200">
             Projects
           </button>
 
-          <button className = "bg-white border border-gray-200 rounded-xl p-4 text-center">
+          <button className = "bg-white border border-gray-200 rounded-xl p-4 text-center hover:bg-gray-50 hover:-translate-y-1 transition duration-200">
             Skills
           </button>
         </div>
