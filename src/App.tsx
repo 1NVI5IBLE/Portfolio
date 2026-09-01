@@ -1,8 +1,30 @@
-function App() {
-  return (
-    <main className = "min-h-screen bg-[#f7f7f5] flex flex-col items-center">
+import { useState } from "react";
+import type React from "react";
 
-      <section className = "w-full max-w-5xl flex flex-col items-center text-center px-6 pt-24">
+function App() {
+
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    setMousePosition({ x: event.clientX, y: event.clientY })
+  }
+
+
+  return (
+    <main 
+      onMouseMove={handleMouseMove}
+      className = "relative min-h-screen bg-[#f7f7f5] flex flex-col items-center overflow-hidden">
+
+      <div
+        className="absolute w-96 h-96 bg-blue-200 rounded-full blur-3xl opacity-40 pointer-events-none"
+        style={{
+          left: mousePosition.x,
+          top: mousePosition.y,
+          transform: "translate(-50%, -50%)",
+        }}
+      />
+
+      <section className = "relative z-10 w-full max-w-5xl flex flex-col items-center text-center px-6 pt-24">
 
         <p className = "text-sm font-medium text-gray-500 mb-4">
           SOFTWARE DEVELOPER
