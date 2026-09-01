@@ -1,5 +1,10 @@
 import { useEffect, useRef } from "react"
 
+type TrailPoint = {
+  x: number
+  y: number
+}
+
 function FluidBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
@@ -26,9 +31,20 @@ function FluidBackground() {
       y: window.innerHeight / 2,
     }
 
+    const trail: TrailPoint[] = []
+
     const handleMouseMove = (event: MouseEvent) => {
       mouse.x = event.clientX
       mouse.y = event.clientY
+
+      trail.push({
+        x: mouse.x,
+        y: mouse.y,
+      })
+
+      if (trail.length > 25) {
+        trail.shift()
+      }
     }
 
     window.addEventListener("mousemove", handleMouseMove)
@@ -38,13 +54,51 @@ function FluidBackground() {
     const animate = () => {
       context.clearRect(0, 0, canvas.width, canvas.height)
 
-      context.filter = "blur(80px)"
+      context.filter = "blur(50px)"
 
-      context.fillStyle = "rgba(80, 120, 255, 0.35)"
+      trail.forEach((point, index) => {
+        const progress = index / trail.length
 
-      context.beginPath()
-      context.arc(mouse.x, mouse.y, 180, 0, Math.PI * 2)
-      context.fill()
+        const radius = 60 + progress * 100
+        const opacity = progress * 0.25
+
+        const gradient = context.createRadialGradient(
+          point.x,
+          point.y,
+          0,
+          point.x,
+          point.y,
+          radius
+        )
+
+        gradient.addColorStop(
+          0,
+          `rgba(80, 120, 255, ${opacity})`
+        )
+
+        gradient.addColorStop(
+          0.5,
+          `rgba(190, 100, 255, ${opacity})`
+        )
+
+        gradient.addColorStop(
+          1,
+          `rgba(255, 120, 180, 0)`
+        )
+
+        context.fillStyle = gradient
+
+        context.beginPath()
+        context.arc(
+          point.x,
+          point.y,
+          radius,
+          0,
+          Math.PI * 2
+        )
+
+        context.fill()
+      })
 
       animationFrame = requestAnimationFrame(animate)
     }
