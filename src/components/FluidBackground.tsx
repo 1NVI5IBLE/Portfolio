@@ -1,121 +1,59 @@
 import { useEffect, useRef } from "react"
 
-type TrailPoint = {
-  x: number
-  y: number
-}
-
 function FluidBackground() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const blobRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    const canvas = canvasRef.current
+    let mouseX = window.innerWidth / 2
+    let mouseY = window.innerHeight / 2
 
-    if (!canvas) return
-
-    const context = canvas.getContext("2d")
-
-    if (!context) return
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-
-    resizeCanvas()
-
-    window.addEventListener("resize", resizeCanvas)
-
-    const mouse = {
-      x: window.innerWidth / 2,
-      y: window.innerHeight / 2,
-    }
-
-    const trail: TrailPoint[] = []
-
-    const handleMouseMove = (event: MouseEvent) => {
-      mouse.x = event.clientX
-      mouse.y = event.clientY
-
-      trail.push({
-        x: mouse.x,
-        y: mouse.y,
-      })
-
-      if (trail.length > 25) {
-        trail.shift()
-      }
-    }
-
-    window.addEventListener("mousemove", handleMouseMove)
+    let blobX = mouseX
+    let blobY = mouseY
 
     let animationFrame: number
 
+    const handleMouseMove = (event: MouseEvent) => {
+      mouseX = event.clientX
+      mouseY = event.clientY
+    }
+
     const animate = () => {
-      context.clearRect(0, 0, canvas.width, canvas.height)
+      blobX += (mouseX - blobX) * 0.08
+      blobY += (mouseY - blobY) * 0.08
 
-      context.filter = "blur(50px)"
-
-      trail.forEach((point, index) => {
-        const progress = index / trail.length
-
-        const radius = 60 + progress * 100
-        const opacity = progress * 0.25
-
-        const gradient = context.createRadialGradient(
-          point.x,
-          point.y,
-          0,
-          point.x,
-          point.y,
-          radius
-        )
-
-        gradient.addColorStop(
-          0,
-          `rgba(80, 120, 255, ${opacity})`
-        )
-
-        gradient.addColorStop(
-          0.5,
-          `rgba(190, 100, 255, ${opacity})`
-        )
-
-        gradient.addColorStop(
-          1,
-          `rgba(255, 120, 180, 0)`
-        )
-
-        context.fillStyle = gradient
-
-        context.beginPath()
-        context.arc(
-          point.x,
-          point.y,
-          radius,
-          0,
-          Math.PI * 2
-        )
-
-        context.fill()
-      })
+      if (blobRef.current) {
+        blobRef.current.style.transform =
+          `translate(${blobX}px, ${blobY}px) translate(-50%, -50%)`
+      }
 
       animationFrame = requestAnimationFrame(animate)
     }
 
-    animate()
+    window.addEventListener("mousemove", handleMouseMove)
+
+    animationFrame = requestAnimationFrame(animate)
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas)
       window.removeEventListener("mousemove", handleMouseMove)
       cancelAnimationFrame(animationFrame)
     }
   }, [])
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
+    <div
+      ref={blobRef}
+      className="
+        absolute
+        top-0
+        left-0
+        w-96
+        h-96
+        bg-blue-200
+        rounded-full
+        blur-3xl
+        opacity-40
+        pointer-events-none
+      "
     />
   )
 }
