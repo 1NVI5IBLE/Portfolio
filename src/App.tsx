@@ -1,14 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type React from "react";
 
 function App() {
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [blobPosition, setBlobPosition] = useState({ x: 0, y: 0 });
 
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
     setMousePosition({ x: event.clientX, y: event.clientY })
   }
 
+  useEffect(() => {
+    let animationFrame: number
+
+    const animate = () => {
+      setBlobPosition((currentPosition) => ({
+        x: currentPosition.x + (mousePosition.x - currentPosition.x) * 0.08,
+        y: currentPosition.y + (mousePosition.y - currentPosition.y) * 0.08,
+      }))
+
+      animationFrame = requestAnimationFrame(animate)
+    }
+
+    animationFrame = requestAnimationFrame(animate)
+
+    return () => cancelAnimationFrame(animationFrame)
+  }, [mousePosition])
 
   return (
     <main 
@@ -18,8 +35,8 @@ function App() {
       <div
         className="absolute w-96 h-96 bg-blue-200 rounded-full blur-3xl opacity-40 pointer-events-none"
         style={{
-          left: mousePosition.x,
-          top: mousePosition.y,
+          left: blobPosition.x,
+          top: blobPosition.y,
           transform: "translate(-50%, -50%)",
         }}
       />
