@@ -8,15 +8,26 @@ function App() {
 
       <aside className = "fixed left-0 top-0 z-20 h-screen w-64 border-r border-gray-200 bg-white/80 backdrop-blur-md p-4">
       
-        <div className = "mb-8">
-          <h2 className = "text-xl font-bold">
+        <div className = "flex items-center gap-3">
+          <div className = "w-9 h-9 rounded-lg bg-black text-white flex items-center justify-center font-bold">
             LM
-          </h2>
+          </div>
+        </div>
+
+        <div>
+          <p className = "text-sm font-semibold">
+            Liam Moore
+          </p>
+
+          <p className = "text-xs text-gray-500 mb-8">
+            Portfolio 
+          </p>
         </div>
 
         <nav className = "flex flex-col gap-1">
 
           <button className = "w-full rounded-lg bg-gray-100 px-3 py-2 text-left text-sm font-medium transition">
+            <a href="https://www.flaticon.com/free-icons/project" title="project icons"></a>
             Home
           </button>
 
