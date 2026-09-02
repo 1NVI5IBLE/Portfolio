@@ -6,6 +6,16 @@ function App() {
 
       <FluidBackground />
 
+      <aside className = "fixed left-0 top-0 z-20 h-screen w-64 border-r border-gray-200 bg-white/80 backdrop-blur-md p-4">
+      
+        <div className = "mb-8">
+          <h2 className = "text-xl font-bold">
+            LM
+          </h2>
+        </div>
+      
+      </aside>
+
       <section className="relative z-10 w-full max-w-5xl flex flex-col items-center text-center px-6 pt-24">
 
         <p className="text-sm font-medium text-gray-500 mb-4">
@@ -37,27 +47,12 @@ function App() {
           </div>
         </div>
 
-        <div className="mt-20 w-full max-w-2xl grid grid-cols-2 gap-3">
-
-          <button className="bg-white border border-gray-200 rounded-xl p-4 text-center hover:bg-gray-50 hover:-translate-y-1 transition duration-200">
-            About Me
-          </button>
-
-          <button className="bg-white border border-gray-200 rounded-xl p-4 text-center hover:bg-gray-50 hover:-translate-y-1 transition duration-200">
-            Experience
-          </button>
-
-          <button className="bg-white border border-gray-200 rounded-xl p-4 text-center hover:bg-gray-50 hover:-translate-y-1 transition duration-200">
-            Projects
-          </button>
-
-          <button className="bg-white border border-gray-200 rounded-xl p-4 text-center hover:bg-gray-50 hover:-translate-y-1 transition duration-200">
-            Skills
-          </button>
-
-        </div>
+        
 
       </section>
+
+      
+
     </main>
   )
 }
