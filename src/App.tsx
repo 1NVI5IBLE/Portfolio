@@ -27,7 +27,6 @@ function App() {
         <nav className = "flex flex-col gap-1">
 
           <button className = "w-full rounded-lg bg-gray-100 px-3 py-2 text-left text-sm font-medium transition">
-            <a href="https://www.flaticon.com/free-icons/project" title="project icons"></a>
             Home
           </button>
 
@@ -66,7 +65,10 @@ function App() {
         </p>
 
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-          Hey, I'm Liam 👋
+          Hey, I'm Liam {" "}
+          <span className = "inline-block animate-wave"> 
+            👋
+          </span>
         </h1>
 
         <p className="mt-5 text-lg md:text-xl text-gray-500 max-w-xl">

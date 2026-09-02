@@ -14,3 +14,29 @@ body,
 body {
   min-width: 320px;
 }
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(20deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  60% {
+    transform: rotate(20deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-wave {
+  animation: wave 1.8s ease-in-out infinite;
+  transform-origin: 70% 70%;
+}
