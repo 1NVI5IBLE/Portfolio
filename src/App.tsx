@@ -46,7 +46,9 @@ function App() {
       
       </aside>
 
-      <section className="relative z-10 w-full max-w-5xl flex flex-col items-center text-center px-6 pt-24">
+    <div className="ml-64 min-h-screen">
+
+      <section className="relative z-10 w-full min-h-screen flex flex-col items-center text-center px-6 pt-24">
 
         <p className="text-sm font-medium text-gray-500 mb-4">
           SOFTWARE DEVELOPER
@@ -81,7 +83,7 @@ function App() {
 
       </section>
 
-      
+    </div>  
 
     </main>
   )
