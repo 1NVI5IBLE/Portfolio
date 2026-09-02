@@ -13,6 +13,36 @@ function App() {
             LM
           </h2>
         </div>
+
+        <nav className = "flex flex-col gap-1">
+
+          <button className = "w-full rounded-lg bg-gray-100 px-3 py-2 text-left text-sm font-medium transition">
+            Home
+          </button>
+
+          <button className = "w-full rounded-lg px-3 py-2 text-left text-sm text-gray-600 hover:bg-gray-100 hover:text-black transition">
+            About Me
+          </button>
+
+          <button className = "w-full rounded-lg px-3 py-2 text-left text-sm text-gray-600 hover:bg-gray-100 hover:text-black transition">
+            Experience
+          </button>
+
+          <button className = "w-full rounded-lg px-3 py-2 text-left text-sm text-gray-600 hover:bg-gray-100 hover:text-black transition">
+            Projects
+          </button>
+
+          <button className = "w-full rounded-lg px-3 py-2 text-left text-sm text-gray-600 hover:bg-gray-100 hover:text-black transition">
+            Skills
+          </button>
+
+        </nav>
+
+        <div className = "absolute bottom-4 left-4 right-4 border-t border-gray-200 pt-4">
+          <button className = "w-full rounded-lg px-3 py-2 text-left text-sm text-gray-600 hover:bg-gray-100 hover:text-black transition">
+            Contact
+          </button>
+        </div>
       
       </aside>
 
